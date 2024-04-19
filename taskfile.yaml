@@ -40,7 +40,6 @@ tasks:
     cmds:
       - task: init
       - task: apply
-      #- task: local-ai-ip
 
   cleanup:
     desc: "Destroy and clean up the cluster"
