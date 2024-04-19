@@ -5,7 +5,7 @@
 # - https://github.com/mudler/LocalAI?tab=readme-ov-file#-usage
 network = {
   install = false
-  name = "tf-network"
+  name    = "tf-network"
 
   config = {
     ipv4_address = "10.50.50.1/24"

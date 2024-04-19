@@ -1,15 +1,20 @@
 ## Standard VM ##
+# See available images: "incus image list images:ubuntu/24"
+# Desktops images:
+#   images:ubuntu/noble/desktop
+#   images:archlinux/desktop-gnome
+
 resource "incus_instance" "tf-incus-vm-iso" {
-  count   = var.instance.install ? 1 : 0
+  count    = var.instance.install ? 1 : 0
   name     = "tf-incus-vm-iso"
-  image    = "images:ubuntu/23.10"    # When booting from an ISO, this is NOT used and just a place holder since it's a require param in the provider
-  type     = "virtual-machine" # Option: container, virtual-machine. Defaults: container
+  image    = "images:ubuntu/noble/desktop" # When booting from an ISO, this is NOT used and just a place holder since it's a require param in the provider
+  type     = "virtual-machine"     # Option: container, virtual-machine. Defaults: container
   profiles = ["${incus_profile.tf-profile[0].name}"]
-  running = true
+  running  = true
 
   ## REF: https://linuxcontainers.org/incus/docs/main/reference/instance_options/
   config = {
-    "boot.autostart" = false
+    "boot.autostart"        = false
     "user.access_interface" = "eth0"
   }
 
@@ -30,9 +35,9 @@ resource "incus_instance" "tf-incus-vm-iso" {
     type = "disk"
 
     properties = {
-      pool   = "incus"
-      source = "fedora-40-iso"    ## Which ISO to use. Values: fedora-40-iso, ubuntu-lts-24-04-iso
-      "boot.priority" = 1  # Option: 10. Higher value boots this device first. Set the value to 1 will fall back to using the image "incus_instance.tf-incus-vm-iso.image" as defined above
+      pool            = "incus"
+      source          = "fedora-40-iso" ## Which ISO to use. Values: fedora-40-iso, ubuntu-lts-24-04-iso
+      "boot.priority" = 1               # Option: 10. Higher value boots this device first. Set the value to 1 will fall back to using the image "incus_instance.tf-incus-vm-iso.image" as defined above
     }
   }
 

@@ -3,7 +3,7 @@
 #############
 resource "incus_profile" "tf-profile" {
   count = var.profile.install ? 1 : 0
-  name = "tf-profile"
+  name  = "tf-profile"
 
   ## Reference: https://linuxcontainers.org/incus/docs/main/reference/instance_options/
   config = {

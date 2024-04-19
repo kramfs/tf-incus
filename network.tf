@@ -1,7 +1,7 @@
 ## NETWORK ##
 resource "incus_network" "tf-network" {
   count = var.network.install ? 1 : 0
-  name = var.network.name
+  name  = var.network.name
 
   config = {
     "ipv4.address" = var.network.config.ipv4_address
