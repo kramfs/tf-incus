@@ -1,0 +1,22 @@
+architecture: x86_64
+config:
+  image.architecture: amd64
+  image.type: squashfs
+  image.variant: default
+  limits.cpu: "4"
+  limits.memory: 8GB
+devices:
+  eth0:
+    name: eth0
+    network: incusbr0
+    type: nic
+  root:
+    path: /
+    pool: default
+    type: disk
+    size: 30GiB
+ephemeral: false
+profiles:
+- default
+stateful: false
+description: ""
