@@ -1,7 +1,9 @@
+## Standard VM ##
 resource "incus_instance" "tf-incus-vm" {
-  count   = var.instance.install ? 1 : 0
+  #count   = var.instance.install ? 1 : 0
+  count   = false ? 1 : 0
   name     = "tf-incus-vm"
-  image    = "images:ubuntu/23.10"
+  image    = "images:ubuntu/23.10"    # To list all available image: "incus image list images:"
   type     = "virtual-machine" # Option: container, virtual-machine. Defaults: container
   profiles = ["${incus_profile.tf-profile[0].name}"]
   running = true
@@ -21,6 +23,52 @@ resource "incus_instance" "tf-incus-vm" {
   #    path = "/"
   #  }
   #}
+
+  ## REF: https://linuxcontainers.org/incus/docs/main/reference/instance_options/#instance-resource-limits
+  limits = {
+    cpu    = 2
+    memory = "8GiB" # Percentage of the host’s memory or a fixed value in bytes. Various suffixes are supported.
+    #memory.enforce = "hard" # Default: hard. Whether the memory limit is hard or soft
+  }
+}
+
+
+## Custom VM: Initailly Boot from ISO Installer ##
+resource "incus_instance" "tf-incus-vm-iso" {
+  count   = var.instance.install ? 1 : 0
+  name     = "tf-incus-vm-iso"
+  image    = "images:ubuntu/23.10"    # When booting from an ISO, this is NOT used and just a place holder since it's a require param in the provider
+  type     = "virtual-machine" # Option: container, virtual-machine. Defaults: container
+  profiles = ["${incus_profile.tf-profile[0].name}"]
+  running = true
+
+  ## REF: https://linuxcontainers.org/incus/docs/main/reference/instance_options/
+  config = {
+    "boot.autostart" = false
+    "user.access_interface" = "eth0"
+  }
+
+  #device {
+  #  name = "root"
+  #  type = "disk"
+  #  properties = {
+  #    pool = "default"
+  #    size = "30GiB"
+  #    path = "/"
+  #  }
+  #}
+
+  # This is used to attach an ISO installer
+  device {
+    name = "iso-installer"
+    type = "disk"
+
+    properties = {
+      pool   = "incus"
+      source = "fedora-40-iso"    ## Which ISO to use. Values: fedora-40-iso, ubuntu-lts-24-04-iso
+      "boot.priority" = 1  # Option: 10. Higher value boots this device first. Set the value to 1 will fall back to using the image "incus_instance.tf-incus-vm-iso.image" as defined above
+    }
+  }
 
   ## REF: https://linuxcontainers.org/incus/docs/main/reference/instance_options/#instance-resource-limits
   limits = {
