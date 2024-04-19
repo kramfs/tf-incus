@@ -17,7 +17,7 @@ resource "incus_profile" "tf-profile" {
 
     properties = {
       nictype = "bridged"
-      #parent  = "${incus_network.tf-network.name}"
+      #parent  = "${incus_network.tf-network[0].name}"
       parent = "incusbr0" # Default bridged network
     }
   }

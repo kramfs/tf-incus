@@ -6,7 +6,7 @@ resource "incus_network" "tf-network" {
   config = {
     "ipv4.address" = var.network.config.ipv4_address
     "ipv4.nat"     = var.network.config.ipv4_nat
-    "ipv6.address" = var.network.config.ipv6_address
-    "ipv6.nat"     = var.network.config.ipv6_nat
+    #"ipv6.address" = var.network.config.ipv6_address
+    #"ipv6.nat"     = var.network.config.ipv6_nat
   }
 }
