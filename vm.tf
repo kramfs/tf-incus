@@ -48,13 +48,14 @@ resource "incus_instance" "tf-incus-vm-iso" {
     "user.access_interface" = "eth0"
   }
 
+  # DATA VOLUME
   #device {
-  #  name = "root"
+  #  name = "data"
   #  type = "disk"
   #  properties = {
-  #    pool = "default"
+  #    pool = "incus"
   #    size = "30GiB"
-  #    path = "/"
+  #    path = "/media"
   #  }
   #}
 
