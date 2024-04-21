@@ -43,8 +43,20 @@ tasks:
       - printf "Now check the vm console with \n incus console tf-incus-vm-iso --type vga"
 
   cleanup:
-    desc: "Destroy and clean up the cluster"
+    desc: "Destroy and clean up the instance"
     #dir: ""
     cmds:
       - task: destroy
       - find . -name '*terraform*' -print | xargs rm -Rf
+
+  bash:
+    desc: "Shell (bash) into the instance"
+    dir: ""
+    cmds:
+      - incus exec tf-incus-vm bash
+
+  console:
+    desc: "Connect to the instance console"
+    dir: ""
+    cmds:
+      - incus console tf-incus-vm --type vga

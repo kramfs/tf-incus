@@ -4,9 +4,9 @@
 #   images:ubuntu/noble/desktop
 #   images:archlinux/desktop-gnome
 
-resource "incus_instance" "tf-incus-vm-iso" {
+resource "incus_instance" "tf-incus-vm" {
   count    = var.instance.install ? 1 : 0
-  name     = "tf-incus-vm-iso"
+  name     = "tf-incus-vm"
   image    = "images:ubuntu/noble/desktop" # When booting from an ISO, this is NOT used and just a place holder since it's a require param in the provider
   type     = "virtual-machine"     # Option: container, virtual-machine. Defaults: container
   profiles = ["${incus_profile.tf-profile[0].name}"]
