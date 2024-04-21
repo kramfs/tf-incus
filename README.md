@@ -188,6 +188,7 @@ To Shell (bash) into the instance:
 task bash
 ```
 
+Example:
 ```
 ❯ task bash
 task: [bash] incus exec tf-incus-vm bash
@@ -203,6 +204,7 @@ To connect to the instance console:
 task console
 ```
 
+Example:
 ```
 ❯ task console
 task: [console] incus console tf-incus-vm --type vga
