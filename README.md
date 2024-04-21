@@ -19,6 +19,8 @@ It's a popular choice among developers and sysadmins looking for a lightweight a
 
 ## Pre-requisites
 
+- Terraform
+    - HashiCorp distributes Terraform as a [binary package](https://developer.hashicorp.com/terraform/install). You can also install Terraform using popular package managers.
 - Incus
     - The easiest way to install Incus is to [install one of the available packages](https://linuxcontainers.org/incus/docs/main/installing/#installing-from-package), but you can also install Incus from the [sources](https://linuxcontainers.org/incus/docs/main/installing/#installing-from-source).
 - LXC 
