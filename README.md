@@ -23,7 +23,7 @@ It's a popular choice among developers and sysadmins looking for a lightweight a
     - HashiCorp distributes Terraform as a [binary package](https://developer.hashicorp.com/terraform/install). You can also install Terraform using popular package managers.
 - Incus
     - The easiest way to install Incus is to [install one of the available packages](https://linuxcontainers.org/incus/docs/main/installing/#installing-from-package), but you can also install Incus from the [sources](https://linuxcontainers.org/incus/docs/main/installing/#installing-from-source).
-- LXC 
+- LXC
     - Follow the [installation](https://linuxcontainers.org/lxc/getting-started/) instruction.
     - In most cases, you'll find recent versions of LXC available for your Linux distribution. Either directly in the distribution's package repository or through some backport channel.
 
@@ -188,12 +188,24 @@ To Shell (bash) into the instance:
 task bash
 ```
 
+```
+❯ task bash
+task: [bash] incus exec tf-incus-vm bash
+
+root@tf-incus-vm:~#
+```
+
 ## Task Console
 
 To connect to the instance console:
 
 ```
 task console
+```
+
+```
+❯ task console
+task: [console] incus console tf-incus-vm --type vga
 ```
 
 
