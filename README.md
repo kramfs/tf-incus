@@ -26,7 +26,9 @@ It's a popular choice among developers and sysadmins looking for a lightweight a
 - LXC
     - Follow the [installation](https://linuxcontainers.org/lxc/getting-started/) instruction.
     - In most cases, you'll find recent versions of LXC available for your Linux distribution. Either directly in the distribution's package repository or through some backport channel.
-
+- Taskfile
+    - The easiest way is to install using [one of the available packages](https://taskfile.dev/installation/#package-managers).
+    - Or get the [binary](https://taskfile.dev/installation/#get-the-binary)
 
 ## Available Tasks
 Typing `task` will show up the available options
